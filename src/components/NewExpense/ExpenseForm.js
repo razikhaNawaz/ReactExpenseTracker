@@ -2,20 +2,40 @@ import React, { useState } from 'react';
 import './ExpenseForm.css';
 
 const ExpenseForm=()=>{
-    const [enteredTitle, setEnteredTitle]=useState('food');
-    const [enteredAmount, setEnteredAmount]=useState('');
-    const [enteredDate, setEnteredDate]=useState('');
+    //const [enteredTitle, setEnteredTitle]=useState('food');
+    //const [enteredAmount, setEnteredAmount]=useState('');
+    //const [enteredDate, setEnteredDate]=useState('');//for using 3 seperate states
+    const [userInput, setUserInput]=useState({
+        enteredTitle:'',
+        enteredAmount:'',
+        enteredDate:''
+    })//to use one state an object needs to be created to store keys//
    const titleChangeHandler=(event)=>{
-        setEnteredTitle(event.target.value);
-        console.log(enteredTitle);
-   }
+        //setEnteredTitle(event.target.value);
+       //console.log(enteredTitle);
+        // setUserInput({
+//...userInput,
+           // enteredTitle:event.target.value,
+        // });//spread operator is used to retain the previos data
+        setUserInput((prevState)=>{
+            return {...prevState, enteredTitle:event.target.value};
+        })
+   };
    const amountChangeHandler=(event)=>{
-        setEnteredAmount(event.target.value);
-        console.log(enteredAmount);
+        //setEnteredAmount(event.target.value);
+        //console.log(enteredAmount);
+        setUserInput({
+            ...userInput,
+            enteredAmount:event.target.value,
+         });
    }
    const dateChangeHandler=(event)=>{
-         setEnteredDate(event.target.value);
-         console.log(enteredDate);
+         //setEnteredDate(event.target.value);
+         //console.log(enteredDate);
+         setUserInput({
+            ...userInput,
+            enteredDate:event.target.value,
+         });
    }
     
     return (
